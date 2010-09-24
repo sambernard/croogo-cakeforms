@@ -9,7 +9,15 @@ class FormFieldsController extends CformsAppController {
 
 		if(!empty($this->data)){
 			if(empty($this->data['FormField']['name'])){
-				$this->data['FormField']['name'] = 'New Field';
+				$original_name = 'New Field question';
+				$this->data['FormField']['name'] = 'new_field';
+			} else {
+				$original_name = $this->data['FormField']['name'];
+				$this->data['FormField']['name'] = Inflector::slug(strtolower($original_name));
+			}
+
+			if(empty($this->data['FormField']['label'])){
+				$this->data['FormField']['label'] = $original_name;
 			}
 
 			$this->FormField->create();
@@ -63,26 +71,6 @@ class FormFieldsController extends CformsAppController {
 		} else {
 			$this->redirect('/');
 		}
-
-		//if (!$id && empty($this->data)) {
-		//	$this->Session->setFlash(__('Invalid FormField', true));
-		//	$this->redirect(array('controller' => 'cforms', 'action' => 'index'));
-		//}
-		//if (!empty($this->data)) {
-		//	if ($this->FormField->save($this->data)) {
-		//		$this->Session->setFlash(__('The FormField has been saved', true));
-		//		$this->redirect(array('action' => 'edit', $id));
-		//	} else {
-		//		$this->Session->setFlash(__('The FormField could not be saved. Please, try again.', true));
-		//	}
-		//}
-		//
-		//if (empty($this->data)) {
-		//	$this->data = $this->FormField->read(null, $id);
-		//}
-		//
-		//$validationRules = $this->FormField->ValidationRule->find('list');
-		//$this->set(compact('validationRules'));
 	}
 
 	function admin_delete($id = null) {
