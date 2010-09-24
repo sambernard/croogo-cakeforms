@@ -21,6 +21,14 @@ class CformsController extends CformsAppController {
 			$this->data = $this->Cform->read(null, $id);
 		}
 
+		if(empty($this->data['Cform']['recipient'])){
+			$this->data['Cform']['recipient'] = Configure::read('Site.email');
+		}
+
+		if(empty($this->data['Cform']['from'])){
+			$this->data['Cform']['from'] = Configure::read('Site.email');
+		}
+
 		$nexts = $this->Cform->Next->find('list');
 		$types = $this->Cform->FormField->types;
 		$multiTypes = $this->Cform->FormField->multiTypes;;
