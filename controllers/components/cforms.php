@@ -1,3 +1,4 @@
+
 <?php
 class CformsComponent extends Object{
 
@@ -102,9 +103,8 @@ class CformsComponent extends Object{
  * @return void
  */
         function startup(&$controller){
-            $controller->set('newsletterHookStartup', 'NewsletterHook startup');
-
             $this->Controller = &$controller;
+            $this->Controller->set('cformsComponent', 'CformsComponent startup');
             $this->Controller->helpers[] = "Cforms.Cakeform";
 
             if(!empty($this->Controller->data['Cform']['submitHere']) && $this->Controller->data['Cform']['id']){
@@ -244,6 +244,7 @@ class CformsComponent extends Object{
             $id = $this->Controller->data['Cform']['id'];
 
             $this->loadForm($id);
+            $uploadsProcessed = $this->_processUploads();
 
             $validate = $this->Controller->data;
             foreach($validate['Form'] as &$field){
@@ -253,7 +254,7 @@ class CformsComponent extends Object{
             }
 
             $this->Form->set($validate);
-            if($this->Form->validates() && $this->_processUploads()){
+            if($uploadsProcessed && $this->Form->validates()){
                     $this->submitted = true;
                     $this->formData['Cform']['submitted'] = true;
                     if(!empty($this->formData['Cform']['next'])){
@@ -296,17 +297,20 @@ class CformsComponent extends Object{
                                 }
 
                                 if(!empty($this->formData['Cform']['redirect'])){
-                                        $this->redirect($this->formData['Cform']['redirect']);
+                                        $this->Controller->redirect($this->formData['Cform']['redirect']);
                                 }
+
+                                unset($this->Controller->data);
                                 return true;
                             } else {
                                 $this->Controller->Session->setFlash("There was a problem saving your submission. Please check for errors and try again.");
                                 return false;
                             }
                     }
+            } else {
+                $this->Controller->Session->setFlash("There was a problem saving your submission. Please check this form for errors or omissions and try again.");
             }
         }
-
 /**
  * Emails form
  *
@@ -346,30 +350,36 @@ class CformsComponent extends Object{
  */
     private function _processUploads(){
         $files = array();
-        foreach($this->Controller->data['Form'] as &$formField){
-                if(isset($formField['tmp_name']) && isset($formField['name'])){
+        foreach($this->Controller->data['Form'] as $key => &$formField){
 
-                        $i = null;
-                        $duplicate = true;
+                if( is_array($formField) && array_key_exists('tmp_name', $formField) && array_key_exists('name', $formField)){
 
-                        while($duplicate == true){
+                        if(empty($formField['tmp_name'])){
+                                $this->Controller->data['Form'][$key] = null;
 
-                                $full_path = WWW_ROOT . DS . '..' . DS . $this->settings['uploadPath'] . $i . $formField['name'];
-                                $short_path = APP . DS . $this->settings['uploadPath'] . $i . $formField['name'];
+                        } else {
+                                $i = null;
+                                $duplicate = true;
 
-                                if(!file_exists($full_path)){
-                                        $duplicate = false;
-                                        if(is_uploaded_file($formField['tmp_name']) && move_uploaded_file($formField['tmp_name'], $full_path)){
-                                                $formField = "http://" . $_SERVER['SERVER_NAME'] . Router::url(array('plugin' => 'cforms', 'controller' => 'submissions', 'action' => 'view_upload', base64_encode($full_path)));
-                                                $files[] = $full_path;
-                                        } else {
-                                                foreach($files as $file){
-                                                        unlink($file);
+                                while($duplicate == true){
+
+                                        $full_path = WWW_ROOT . DS . '..' . DS . $this->settings['uploadPath'] . $i . $formField['name'];
+                                        $short_path = APP . DS . $this->settings['uploadPath'] . $i . $formField['name'];
+
+                                        if(!file_exists($full_path)){
+                                                $duplicate = false;
+                                                if(is_uploaded_file($formField['tmp_name']) && move_uploaded_file($formField['tmp_name'], $full_path)){
+                                                        $formField = "http://" . $_SERVER['SERVER_NAME'] . Router::url(array('plugin' => 'cforms', 'controller' => 'submissions', 'action' => 'view_upload', base64_encode($full_path)));
+                                                        $files[] = $full_path;
+                                                } else {
+                                                        foreach($files as $file){
+                                                                unlink($file);
+                                                        }
+                                                        return false;
                                                 }
-                                                return false;
                                         }
+                                        $i++;
                                 }
-                                $i++;
                         }
                 }
         }
