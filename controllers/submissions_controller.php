@@ -3,7 +3,7 @@ class SubmissionsController extends CformsAppController {
 
 	var $name = 'Submissions';
 	var $helpers = array('Html', 'Form', 'Cforms.Csv');
-	var $components = array('Cforms.Cakeform');
+	var $components = array('Cforms.Cforms');
 
 	function admin_export($formId = null){
 		if (!$formId) {
