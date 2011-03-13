@@ -1,5 +1,11 @@
 <div class="submissions index">
 <h2><?php __('Submissions');?></h2>
+<div class="actions">
+    <ul>
+        <li><?php echo $html->link(__('Back to Index', true), array('controller' => 'cforms', 'action' => 'index')); ?></li>
+        <li><?php echo $html->link(__('Export Records', true), array('controller' => 'submissions', 'action' => 'export', $this->params['pass'][0])); ?></li>
+    </ul>
+</div>
 <p>
 <?php
 echo $paginator->counter(array(

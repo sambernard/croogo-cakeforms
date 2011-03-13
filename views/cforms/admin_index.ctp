@@ -1,6 +1,12 @@
 <div class="cforms index">
 <h2><?php __('Cforms');?></h2>
-<?php echo $html->link('Add new form', array('action' => 'add'));?>
+
+<div class="actions">
+    <ul>
+        <li><?php echo $html->link('Add new form', array('action' => 'add'));?></li>
+    </ul>
+</div>
+
 <table cellpadding="0" cellspacing="0">
 <tr>
 	<th><?php echo $paginator->sort('name');?></th>
@@ -24,7 +30,8 @@ foreach ($cforms as $cform):
 		</td>
 		<td class="actions">
 			<?php echo $html->link(__('View Submissions', true), array('controller' => 'submissions', 'action' => 'index', $cform['Cform']['id'])); ?>
-			<?php echo $html->link(__('Edit Form', true), array('action' => 'edit', $cform['Cform']['id'])); ?>
+			<?php echo $html->link(__('Export Records', true), array('controller' => 'submissions', 'action' => 'export', $cform['Cform']['id'])); ?>
+                        <?php echo $html->link(__('Edit Form', true), array('action' => 'edit', $cform['Cform']['id'])); ?>
 			<?php echo $html->link(__('Delete', true), array('action' => 'delete', $cform['Cform']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $cform['Cform']['id'])); ?>
 		</td>
 	</tr>
