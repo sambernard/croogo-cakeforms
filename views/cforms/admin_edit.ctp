@@ -36,7 +36,7 @@ echo $this->Html->script(array('/cforms/js/cforms/admin_edit.js'));
 			echo $form->input('action', array('label' => 'Alternative Form Action'));
 			echo $form->input('redirect', array('label' => 'Alternative Success Page/Redirect'));
 			echo $form->input('hide_after_submission');
-			echo $form->input('show_after_submission', array('label' => 'Show this message once the form has been submitted.'));
+			echo $form->input('success_message', array('label' => 'Show this message once the form has been submitted. HTML is allowed.'));
 		?>
 		</div>
 		<h3><a href="#">Email Options/Autoconfirmation</a></h3>

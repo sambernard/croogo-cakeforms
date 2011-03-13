@@ -33,7 +33,7 @@ class CakeformHelper extends AppHelper {
             $out = '';
 
 	    if($formData['Cform']['submitted'] == true){
-		$out .= "<div class='form-success'>" . $formData['Cform']['show_after_submission'] . "</div>";
+		$out .= "<div class='form-success'>" . $formData['Cform']['success_message'] . "</div>";
 	    }
 
             if(!empty($formData['Cform'])){
