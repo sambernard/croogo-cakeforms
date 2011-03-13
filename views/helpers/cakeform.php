@@ -1,13 +1,14 @@
 <?php
 class CakeformHelper extends AppHelper {
-    public $helpers = array('Html', 'Form', 'Javascript');
+    public $helpers = array('Html', 'Form');
 
     public function beforeRender() {
 	if($this->params['plugin'] == 'cforms'){
 	    $view =& ClassRegistry::getObject('view');
 	    if($view){
-		$this->Javascript->link(array('/cforms/js/jquery-1.4.2.min.js', '/cforms/js/jquery-ui-1.8.1.custom.min.js'), false);
-		$view->addScript($this->Html->css(array('/cforms/css/ui-lightness/jquery-ui-1.8.1.custom')));
+                $this->Html->script(array('jquery.min.js', '/cforms/js/jquery-ui-1.8.1.custom.min.js'), array('once' => true,
+                                                                                                                 'inline' => false));
+		$this->Html->css('/cforms/css/ui-lightness/jquery-ui-1.8.1.custom', 'stylesheet', array('inline' => false));
 	    }
 	}
     }
@@ -29,7 +30,10 @@ class CakeformHelper extends AppHelper {
  */
     function insert($formData){
         if(!($formData['Cform']['submitted'] == true && $formData['Cform']['hide_after_submission'] == true)){
-		$this->Javascript->link(array('/cforms/js/form/form.js'), false);
+
+            $this->Html->script(array('/cforms/js/form/form.js'), array('once' => true,
+                                                                        'inline' => false));
+            
             $out = '';
 
 	    if($formData['Cform']['submitted'] == true){
