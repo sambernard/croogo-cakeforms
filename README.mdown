@@ -1,8 +1,16 @@
-Cakeforms 0.9
+Cakeforms
 =============
+* Version: 0.9
+* Author: Sam Bernard (sam@sambernard.net)
+* Website: <http://sambernard.net>
+
 An easy to use form plugin inspired by the amazing [Cforms] plugin for Wordpress.
 
 [cforms]: http://www.deliciousdays.com/cforms-plugin/
+
+Requirements
+-----------
+* Croogo 1.3.2
 
 Features
 -----------
