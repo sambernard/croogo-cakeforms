@@ -1,0 +1,73 @@
+Cakeforms 0.9
+=============
+An easy to use form plugin inspired by the amazing [Cforms] plugin for Wordpress.
+
+[cforms]: http://www.deliciousdays.com/cforms-plugin/
+
+Features
+-----------
+* Allow simple form creation via jQuery UI
+* Field Validation
+* Per Form Recipients
+* Database Tracking
+* CSV Export
+* Embed form anywhere using component and helper
+
+Installation
+-----------
+1. Upload the files to `plugins/cforms`
+2. Run the sql file `cforms/config/sql/cakeforms.sql`
+3. Login to Croogo and activate the plugin.
+
+Instructions
+-----------
+
+### Creating Forms ###
+1. Go to Extensions->Forms->Create Form
+2. Name Your Form
+3. Add fields
+    * Field Name _should_ be unique- it probably won't mess anything up but only the last field with a name will be processed
+    * The label can be left blank.
+    * "Required" fields will of course be required.
+    * Field types are standard- as of right now if 'checkbox' is selected the required option will _not_ work- it won't cause any errors it just doesn't work right now.
+    * If a field can have options(e.g. checkbox, select), you enter options as a comma separated list
+4. Add validation
+    * The standatd rules are included- if you want to edit the message displayed go to Extensions->Forms->Validation Rules. I recommend **not** deleting any of the rules.
+    * Two fields shown "DependsOn" and "DependsValue". These are basically used to make the fields required only if the field whose name is in the "DependsOn" section has the value of "DependsValue". I do have some Javascript set to automatically hide dependent fields unless they are required on the frontend.
+
+### Displaying Forms ###
+Forms can be displayed in two ways:
+
+#### Inline in a Node ####
+1. In one of your nodes, add {cform_ID}, where ID is the id of the form you want to display.
+
+#### In views (CURRENTLY NOT WORKING) ####
+1. Include the Cforms.Cforms Component
+2. This will automatically load the Cakform Helper.
+3. ...
+
+### Exporting Form Data ###
+1. Go to the forms index(Extensions->Forms->List Forms)
+2. Click export next to the appropriate Form.
+
+
+### Processing Form Data _(optional)_ ###
+* Create the function `beforeCformsSave(&$data)` in your controller/AppController- it is only called after the data has been validated but before
+it is saved to the db. This allows you to do any data massaging logic you may need(such as getting rid of things you don't want saved in the db or credit card processing).
+This function must return true or the data will not be saved in the DB.
+* Create the function `afterCformsSave($data)` in your controller/AppController- it is only called after the data has been validated and
+saved to the database
+
+### Form Config Options: ###
+* Alternative Form Action: Modifies the action of the form... you lose any validation/processing of the data _unless_ the cform
+component is included in the controller that the action points to.
+* Redirect: Sets a redirect after the form has been processed
+* Hide After Submission: Hides the form after it is successfully submitted.
+* Admin email: The email address to which form submissions are sent
+* From Email: The email address from which submissions are sent
+* Send Copy to Visitor (**Currently Not working**)
+
+Coming Soon
+-----------
+* Multi-page forms
+* Autoresponder
