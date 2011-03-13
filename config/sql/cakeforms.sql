@@ -1,25 +1,31 @@
 -- phpMyAdmin SQL Dump
--- version 3.2.0.1
+-- version 3.3.9.2
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 23, 2010 at 02:53 PM
--- Server version: 5.1.37
+-- Generation Time: Mar 12, 2011 at 10:54 PM
+-- Server version: 5.5.8
 -- PHP Version: 5.3.0
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
 --
--- Database: `wildflower`
+-- Database: `plugins`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cforms`
+-- Table structure for table `cforms_cforms`
 --
 
-CREATE TABLE IF NOT EXISTS `cforms` (
+CREATE TABLE IF NOT EXISTS `cforms_cforms` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   `recipient` varchar(255) DEFAULT NULL,
@@ -30,16 +36,22 @@ CREATE TABLE IF NOT EXISTS `cforms` (
   `auto_confirmation` tinyint(1) NOT NULL DEFAULT '0',
   `require_ssl` tinyint(1) NOT NULL DEFAULT '0',
   `hide_after_submission` tinyint(1) NOT NULL DEFAULT '0',
+  `success_message` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `cforms_cforms`
+--
+
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `form_fields`
+-- Table structure for table `cforms_form_fields`
 --
 
-CREATE TABLE IF NOT EXISTS `form_fields` (
+CREATE TABLE IF NOT EXISTS `cforms_form_fields` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL DEFAULT 'New Field',
   `label` varchar(255) DEFAULT NULL,
@@ -54,28 +66,38 @@ CREATE TABLE IF NOT EXISTS `form_fields` (
   `depends_on` varchar(45) DEFAULT NULL,
   `depends_value` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `cforms_form_fields`
+--
+
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `form_fields_validation_rules`
+-- Table structure for table `cforms_form_fields_validation_rules`
 --
 
-CREATE TABLE IF NOT EXISTS `form_fields_validation_rules` (
+CREATE TABLE IF NOT EXISTS `cforms_form_fields_validation_rules` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `form_field_id` int(10) unsigned NOT NULL,
   `validation_rule_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `cforms_form_fields_validation_rules`
+--
+
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `submissions`
+-- Table structure for table `cforms_submissions`
 --
 
-CREATE TABLE IF NOT EXISTS `submissions` (
+CREATE TABLE IF NOT EXISTS `cforms_submissions` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `cform_id` int(10) unsigned NOT NULL,
   `created` datetime DEFAULT NULL,
@@ -83,27 +105,39 @@ CREATE TABLE IF NOT EXISTS `submissions` (
   `email` varchar(255) NOT NULL,
   `page` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `cforms_submissions`
+--
+
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `submission_fields`
+-- Table structure for table `cforms_submission_fields`
 --
 
-CREATE TABLE IF NOT EXISTS `submission_fields` (
+CREATE TABLE IF NOT EXISTS `cforms_submission_fields` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `submission_id` int(10) unsigned NOT NULL,
   `form_field` varchar(255) NOT NULL,
   `response` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
--- Table structure for table `validation_rules`
+-- Dumping data for table `cforms_submission_fields`
 --
 
-CREATE TABLE IF NOT EXISTS `validation_rules` (
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cforms_validation_rules`
+--
+
+CREATE TABLE IF NOT EXISTS `cforms_validation_rules` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `rule` varchar(255) NOT NULL,
   `message` varchar(255) NOT NULL,
@@ -112,10 +146,10 @@ CREATE TABLE IF NOT EXISTS `validation_rules` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
--- Dumping data for table `validation_rules`
+-- Dumping data for table `cforms_validation_rules`
 --
 
-INSERT INTO `validation_rules` (`id`, `rule`, `message`, `name`) VALUES
+INSERT INTO `cforms_validation_rules` (`id`, `rule`, `message`, `name`) VALUES
 (1, 'email', 'Please enter a valid email address.', 'Email'),
 (3, 'alphaNumeric', 'This field may only contain letters and numbers.', 'AlphaNumeric'),
 (4, 'cc', 'Please enter a valid credit card number.', 'Credit Card'),

@@ -1,5 +1,5 @@
 <?php
-class Submission extends AppModel {
+class Submission extends CformsAppModel {
 
 	var $name = 'Submission';
 	var $validate = array(

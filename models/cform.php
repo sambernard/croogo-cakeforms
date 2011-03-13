@@ -36,7 +36,7 @@ class Cform extends CformsAppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'Submission'
+		'Cforms.Submission'
 	);
 
 }

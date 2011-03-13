@@ -15,7 +15,7 @@ class FormField extends CformsAppModel {
 	var $hasAndBelongsToMany = array(
 		'ValidationRule' => array(
 			'className' => 'Cforms.ValidationRule',
-			'joinTable' => 'form_fields_validation_rules',
+			'joinTable' => 'cforms_form_fields_validation_rules',
 			'foreignKey' => 'form_field_id',
 			'associationForeignKey' => 'validation_rule_id',
 			'unique' => true,
