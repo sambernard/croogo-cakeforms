@@ -1,4 +1,4 @@
-<?php echo $html->link('View All Submissions', array('action' => 'index'));?>
+<?php echo $this->Html->link('View All Submissions', array('action' => 'index'));?>
 <h2>"<?php echo $submission['Cform']['name'];?>" Submission</h2>
 <strong>Submitted On</strong> <?php echo $submission['Submission']['created'];?><br />
 <strong>Page:</strong> <?php echo $submission['Submission']['page'];?><br />
@@ -24,4 +24,4 @@
 	<?php endforeach;?>
 	</table>
 <?php endif;?>
-<?php echo $html->link('View All Submissions', array('action' => 'index'));?>
+<?php echo $this->Html->link('View All Submissions', array('action' => 'index'));?>

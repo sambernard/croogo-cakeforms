@@ -38,7 +38,7 @@
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Cform'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $html->link($formField['Cform']['name'], array('controller' => 'cforms', 'action' => 'view', $formField['Cform']['id'])); ?>
+			<?php echo $this->Html->link($formField['Cform']['name'], array('controller' => 'cforms', 'action' => 'view', $formField['Cform']['id'])); ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Required'); ?></dt>
@@ -50,14 +50,14 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('Edit FormField', true), array('action' => 'edit', $formField['FormField']['id'])); ?> </li>
-		<li><?php echo $html->link(__('Delete FormField', true), array('action' => 'delete', $formField['FormField']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $formField['FormField']['id'])); ?> </li>
-		<li><?php echo $html->link(__('List FormFields', true), array('action' => 'index')); ?> </li>
-		<li><?php echo $html->link(__('New FormField', true), array('action' => 'add')); ?> </li>
-		<li><?php echo $html->link(__('List Cforms', true), array('controller' => 'cforms', 'action' => 'index')); ?> </li>
-		<li><?php echo $html->link(__('New Cform', true), array('controller' => 'cforms', 'action' => 'add')); ?> </li>
-		<li><?php echo $html->link(__('List Validation Rules', true), array('controller' => 'validation_rules', 'action' => 'index')); ?> </li>
-		<li><?php echo $html->link(__('New Validation Rule', true), array('controller' => 'validation_rules', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('Edit FormField', true), array('action' => 'edit', $formField['FormField']['id'])); ?> </li>
+		<li><?php echo $this->Html->link(__('Delete FormField', true), array('action' => 'delete', $formField['FormField']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $formField['FormField']['id'])); ?> </li>
+		<li><?php echo $this->Html->link(__('List FormFields', true), array('action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New FormField', true), array('action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Cforms', true), array('controller' => 'cforms', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Cform', true), array('controller' => 'cforms', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Validation Rules', true), array('controller' => 'validation_rules', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Validation Rule', true), array('controller' => 'validation_rules', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
 <div class="related">
@@ -83,9 +83,9 @@
 			<td><?php echo $validationRule['rule'];?></td>
 			<td><?php echo $validationRule['message'];?></td>
 			<td class="actions">
-				<?php echo $html->link(__('View', true), array('controller' => 'validation_rules', 'action' => 'view', $validationRule['id'])); ?>
-				<?php echo $html->link(__('Edit', true), array('controller' => 'validation_rules', 'action' => 'edit', $validationRule['id'])); ?>
-				<?php echo $html->link(__('Delete', true), array('controller' => 'validation_rules', 'action' => 'delete', $validationRule['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $validationRule['id'])); ?>
+				<?php echo $this->Html->link(__('View', true), array('controller' => 'validation_rules', 'action' => 'view', $validationRule['id'])); ?>
+				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'validation_rules', 'action' => 'edit', $validationRule['id'])); ?>
+				<?php echo $this->Html->link(__('Delete', true), array('controller' => 'validation_rules', 'action' => 'delete', $validationRule['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $validationRule['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -94,7 +94,7 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $html->link(__('New Validation Rule', true), array('controller' => 'validation_rules', 'action' => 'add'));?> </li>
+			<li><?php echo $this->Html->link(__('New Validation Rule', true), array('controller' => 'validation_rules', 'action' => 'add'));?> </li>
 		</ul>
 	</div>
 </div>

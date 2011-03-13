@@ -2,8 +2,8 @@
 <h2><?php __('Submissions');?></h2>
 <div class="actions">
     <ul>
-        <li><?php echo $html->link(__('Back to Index', true), array('controller' => 'cforms', 'action' => 'index')); ?></li>
-        <li><?php echo $html->link(__('Export Records', true), array('controller' => 'submissions', 'action' => 'export', $this->params['pass'][0])); ?></li>
+        <li><?php echo $this->Html->link(__('Back to Index', true), array('controller' => 'cforms', 'action' => 'index')); ?></li>
+        <li><?php echo $this->Html->link(__('Export Records', true), array('controller' => 'submissions', 'action' => 'export', $this->params['pass'][0])); ?></li>
     </ul>
 </div>
 <p>
@@ -33,7 +33,7 @@ foreach ($submissions as $submission):
 			<?php echo $submission['Submission']['id']; ?>
 		</td>
 		<td>
-			<?php echo $html->link($submission['Cform']['name'], array('controller' => 'cforms', 'action' => 'view', $submission['Cform']['id'])); ?>
+			<?php echo $this->Html->link($submission['Cform']['name'], array('controller' => 'cforms', 'action' => 'view', $submission['Cform']['id'])); ?>
 		</td>
 		<td>
 			<?php echo $submission['Submission']['created']; ?>
@@ -42,9 +42,9 @@ foreach ($submissions as $submission):
 			<?php echo $submission['Submission']['ip']; ?>
 		</td>
 		<td class="actions">
-			<?php echo $html->link(__('View', true), array('action' => 'view', $submission['Submission']['id'])); ?>
-			<?php echo $html->link(__('Edit', true), array('action' => 'edit', $submission['Submission']['id'])); ?>
-			<?php echo $html->link(__('Delete', true), array('action' => 'delete', $submission['Submission']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $submission['Submission']['id'])); ?>
+			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $submission['Submission']['id'])); ?>
+			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $submission['Submission']['id'])); ?>
+			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $submission['Submission']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $submission['Submission']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

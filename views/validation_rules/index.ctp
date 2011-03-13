@@ -32,9 +32,9 @@ foreach ($validationRules as $validationRule):
 			<?php echo $validationRule['ValidationRule']['message']; ?>
 		</td>
 		<td class="actions">
-			<?php echo $html->link(__('View', true), array('action' => 'view', $validationRule['ValidationRule']['id'])); ?>
-			<?php echo $html->link(__('Edit', true), array('action' => 'edit', $validationRule['ValidationRule']['id'])); ?>
-			<?php echo $html->link(__('Delete', true), array('action' => 'delete', $validationRule['ValidationRule']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $validationRule['ValidationRule']['id'])); ?>
+			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $validationRule['ValidationRule']['id'])); ?>
+			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $validationRule['ValidationRule']['id'])); ?>
+			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $validationRule['ValidationRule']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $validationRule['ValidationRule']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -47,8 +47,8 @@ foreach ($validationRules as $validationRule):
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('New ValidationRule', true), array('action' => 'add')); ?></li>
-		<li><?php echo $html->link(__('List Form Fields', true), array('controller' => 'form_fields', 'action' => 'index')); ?> </li>
-		<li><?php echo $html->link(__('New Form Field', true), array('controller' => 'form_fields', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('New ValidationRule', true), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('List Form Fields', true), array('controller' => 'form_fields', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Form Field', true), array('controller' => 'form_fields', 'action' => 'add')); ?> </li>
 	</ul>
 </div>

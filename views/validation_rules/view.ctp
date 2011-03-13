@@ -20,12 +20,12 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('Edit ValidationRule', true), array('action' => 'edit', $validationRule['ValidationRule']['id'])); ?> </li>
-		<li><?php echo $html->link(__('Delete ValidationRule', true), array('action' => 'delete', $validationRule['ValidationRule']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $validationRule['ValidationRule']['id'])); ?> </li>
-		<li><?php echo $html->link(__('List ValidationRules', true), array('action' => 'index')); ?> </li>
-		<li><?php echo $html->link(__('New ValidationRule', true), array('action' => 'add')); ?> </li>
-		<li><?php echo $html->link(__('List Form Fields', true), array('controller' => 'form_fields', 'action' => 'index')); ?> </li>
-		<li><?php echo $html->link(__('New Form Field', true), array('controller' => 'form_fields', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('Edit ValidationRule', true), array('action' => 'edit', $validationRule['ValidationRule']['id'])); ?> </li>
+		<li><?php echo $this->Html->link(__('Delete ValidationRule', true), array('action' => 'delete', $validationRule['ValidationRule']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $validationRule['ValidationRule']['id'])); ?> </li>
+		<li><?php echo $this->Html->link(__('List ValidationRules', true), array('action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New ValidationRule', true), array('action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Form Fields', true), array('controller' => 'form_fields', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Form Field', true), array('controller' => 'form_fields', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
 <div class="related">
@@ -63,9 +63,9 @@
 			<td><?php echo $formField['cform_id'];?></td>
 			<td><?php echo $formField['required'];?></td>
 			<td class="actions">
-				<?php echo $html->link(__('View', true), array('controller' => 'form_fields', 'action' => 'view', $formField['id'])); ?>
-				<?php echo $html->link(__('Edit', true), array('controller' => 'form_fields', 'action' => 'edit', $formField['id'])); ?>
-				<?php echo $html->link(__('Delete', true), array('controller' => 'form_fields', 'action' => 'delete', $formField['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $formField['id'])); ?>
+				<?php echo $this->Html->link(__('View', true), array('controller' => 'form_fields', 'action' => 'view', $formField['id'])); ?>
+				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'form_fields', 'action' => 'edit', $formField['id'])); ?>
+				<?php echo $this->Html->link(__('Delete', true), array('controller' => 'form_fields', 'action' => 'delete', $formField['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $formField['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -74,7 +74,7 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $html->link(__('New Form Field', true), array('controller' => 'form_fields', 'action' => 'add'));?> </li>
+			<li><?php echo $this->Html->link(__('New Form Field', true), array('controller' => 'form_fields', 'action' => 'add'));?> </li>
 		</ul>
 	</div>
 </div>

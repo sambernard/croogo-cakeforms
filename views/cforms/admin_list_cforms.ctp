@@ -13,10 +13,10 @@ echo $this->Html->scriptBlock('
 ?>
 <div>
 <h4>Insert a Form</h4>
-<p>To edit/create a form click <?php echo $html->link('here', array('controller' => 'cforms', 'action' => 'index', 'plugin' => 'cforms'));?>.</p>
+<p>To edit/create a form click <?php echo $this->Html->link('here', array('controller' => 'cforms', 'action' => 'index', 'plugin' => 'cforms'));?>.</p>
 
 <?php echo
-    $form->create(),
-    $form->input('cforms', array('empty' => 'Select a Form')),
-    $form->end('Insert Form');?>
+    $this->Form->create(),
+    $this->Form->input('cforms', array('empty' => 'Select a Form')),
+    $this->Form->end('Insert Form');?>
 </div>

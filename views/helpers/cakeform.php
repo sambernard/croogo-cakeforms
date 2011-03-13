@@ -79,7 +79,7 @@ class CakeformHelper extends AppHelper {
  * Generates appropriate html per field
  *
  * @param array $field Field to process
- * @parram array $custom_options Custom $form->input options for field
+ * @parram array $custom_options Custom $this->Forminput options for field
  *
  * @return string field html
  * @access public

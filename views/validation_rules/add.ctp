@@ -1,19 +1,19 @@
 <div class="validationRules form">
-<?php echo $form->create('ValidationRule');?>
+<?php echo $this->Form->create('ValidationRule');?>
 	<fieldset>
  		<legend><?php __('Add ValidationRule');?></legend>
 	<?php
-		echo $form->input('rule');
-		echo $form->input('message');
-		echo $form->input('FormField');
+		echo $this->Form->input('rule');
+		echo $this->Form->input('message');
+		echo $this->Form->input('FormField');
 	?>
 	</fieldset>
-<?php echo $form->end('Submit');?>
+<?php echo $this->Form->end('Submit');?>
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('List ValidationRules', true), array('action' => 'index'));?></li>
-		<li><?php echo $html->link(__('List Form Fields', true), array('controller' => 'form_fields', 'action' => 'index')); ?> </li>
-		<li><?php echo $html->link(__('New Form Field', true), array('controller' => 'form_fields', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List ValidationRules', true), array('action' => 'index'));?></li>
+		<li><?php echo $this->Html->link(__('List Form Fields', true), array('controller' => 'form_fields', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Form Field', true), array('controller' => 'form_fields', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
